@@ -1,26 +1,37 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LogOut, ArrowRight, Quote } from 'lucide-react'
 import { seniors } from '../data/seniors'
 
 export default function RandomSeniorPage({ onExit }) {
   const [currentSenior, setCurrentSenior] = useState(null)
+  const remainingSeniors = useRef([])
   
   // Pick a random senior on initial mount
   useEffect(() => {
+    remainingSeniors.current = [...seniors]
     pickRandomSenior()
   }, [])
 
   const pickRandomSenior = () => {
-    let newSenior = seniors[Math.floor(Math.random() * seniors.length)]
+    if (seniors.length === 0) return
+    
+    if (remainingSeniors.current.length === 0) {
+      remainingSeniors.current = [...seniors]
+    }
+
+    let randomIndex = Math.floor(Math.random() * remainingSeniors.current.length)
+    let newSenior = remainingSeniors.current[randomIndex]
     
     // Prevent picking the same senior consecutively if possible
     if (seniors.length > 1 && currentSenior) {
       while (newSenior.id === currentSenior.id) {
-        newSenior = seniors[Math.floor(Math.random() * seniors.length)]
+        randomIndex = Math.floor(Math.random() * remainingSeniors.current.length)
+        newSenior = remainingSeniors.current[randomIndex]
       }
     }
     
+    remainingSeniors.current.splice(randomIndex, 1)
     setCurrentSenior(newSenior)
   }
 
