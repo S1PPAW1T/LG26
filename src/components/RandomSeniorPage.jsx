@@ -39,34 +39,56 @@ export default function RandomSeniorPage({ onExit }) {
             backgroundColor: 'rgba(255,255,255,0.9)',
             backdropFilter: 'blur(10px)',
             borderRadius: '24px',
-            padding: '3rem 2rem',
-            width: '100%',
+            padding: 'clamp(1.5rem, 5vh, 3rem) clamp(1rem, 5vw, 2rem)',
+            width: '90%',
             maxWidth: '500px',
+            maxHeight: '85vh',
             boxShadow: '0 20px 40px rgba(138,21,56,0.08)',
             border: '1px solid rgba(138,21,56,0.1)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            position: 'relative',
-            overflow: 'hidden'
+            position: 'relative'
           }}
         >
           {/* Decorative element */}
           <div style={{
             position: 'absolute',
             top: 0, left: 0, right: 0, height: '6px',
-            background: 'linear-gradient(90deg, var(--color-crimson) 0%, var(--color-cream) 100%)'
+            background: 'linear-gradient(90deg, var(--color-crimson) 0%, var(--color-cream) 100%)',
+            borderTopLeftRadius: '24px',
+            borderTopRightRadius: '24px'
           }}></div>
 
+          {currentSenior.department && (
+            <div style={{
+              position: 'absolute',
+              top: '15px',
+              left: '0',
+              color: 'rgba(255, 255, 255, 0.9)',
+              WebkitTextStroke: '2px var(--color-crimson)',
+              textShadow: '2px 4px 12px rgba(138, 21, 56, 0.2)',
+              fontSize: 'clamp(3rem, 12vw, 4.5rem)',
+              fontWeight: '900',
+              transform: 'translate(-20%, -50%) rotate(-25deg)',
+              pointerEvents: 'none',
+              zIndex: 20,
+              whiteSpace: 'nowrap',
+            }}>
+              {currentSenior.department}
+            </div>
+          )}
+
           <div style={{
-            width: '140px',
-            height: '140px',
+            width: 'clamp(130px, 30vw, 180px)',
+            height: 'clamp(130px, 30vw, 180px)',
             borderRadius: '50%',
             overflow: 'hidden',
             border: '4px solid var(--color-white)',
             boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-            marginBottom: '1.5rem',
-            backgroundColor: '#f5f5f5'
+            marginBottom: '1rem',
+            backgroundColor: '#f5f5f5',
+            flexShrink: 0
           }}>
             <img 
               src={currentSenior.imageUrl} 
@@ -76,28 +98,39 @@ export default function RandomSeniorPage({ onExit }) {
           </div>
 
           <h3 style={{ 
-            fontSize: '2rem', 
+            fontSize: 'clamp(1.5rem, 5vw, 2rem)', 
             fontWeight: '700', 
             color: 'var(--color-crimson)',
-            marginBottom: '1.5rem'
+            marginBottom: '1rem'
           }}>
             {currentSenior.name}
           </h3>
 
-          <div style={{ position: 'relative', padding: '0 2rem', marginBottom: '2.5rem' }}>
+          <div style={{ 
+            position: 'relative', 
+            padding: '0 clamp(1rem, 5vw, 2rem)', 
+            marginBottom: '1.5rem',
+            maxHeight: '35vh',
+            overflowY: 'auto',
+            width: '100%',
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(138,21,56,0.2) transparent'
+          }}>
             <Quote 
-              size={32} 
-              color="rgba(138,21,56,0.1)" 
-              style={{ position: 'absolute', top: '-16px', left: '-8px' }}
+              size={24} 
+              color="rgba(138,21,56,0.15)" 
+              style={{ position: 'absolute', top: '0', left: '0' }}
             />
             <p style={{ 
-              fontSize: '1.25rem', 
+              fontSize: 'clamp(1rem, 3vw, 1.15rem)', 
               color: '#444', 
               lineHeight: '1.6',
               fontStyle: 'italic',
               fontWeight: '500',
               zIndex: 1,
-              position: 'relative'
+              position: 'relative',
+              paddingTop: '0.5rem',
+              paddingBottom: '0.5rem'
             }}>
               "{currentSenior.quote}"
             </p>

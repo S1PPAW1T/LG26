@@ -38,7 +38,7 @@ export default function WelcomePage({ onNext }) {
         marginBottom: '2rem',
         maxWidth: '500px'
       }}>
-        ยินดีต้อนรับเข้าสู่ครอบครัววิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
+        ยินดีต้อนรับเข้าสู่ครอบครัวลานเกียร์ครั้งที่ 26 นะ
       </p>
 
       <motion.button 
