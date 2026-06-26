@@ -168,23 +168,7 @@ export default function RandomSeniorPage({ onExit }) {
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', width: '80%', gap: '0.75rem', marginTop: '0.5rem' }}>
-            <motion.button 
-              className="btn-primary"
-              onClick={pickRandomSenior}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.5rem',
-                width: '100%',
-                justifyContent: 'center'
-              }}
-            >
-              ต่อไป <ArrowRight size={20} />
-            </motion.button>
-
+          <div style={{ display: 'flex', flexDirection: 'row', width: '90%', gap: '0.75rem', marginTop: '0.5rem' }}>
             <motion.button
               className="btn-secondary"
               onClick={onExit}
@@ -193,13 +177,33 @@ export default function RandomSeniorPage({ onExit }) {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                width: '100%',
+                gap: '0.3rem',
+                flex: 1,
                 justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                padding: '0.6rem 0.5rem',
+                fontSize: '0.9rem'
               }}
             >
-              <LogOut size={18} /> ออก
+              <LogOut size={16} /> ออก
+            </motion.button>
+
+            <motion.button 
+              className="btn-primary"
+              onClick={pickRandomSenior}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.3rem',
+                flex: 1,
+                justifyContent: 'center',
+                padding: '0.6rem 0.5rem',
+                fontSize: '0.9rem'
+              }}
+            >
+              ต่อไป <ArrowRight size={16} />
             </motion.button>
           </div>
         </motion.div>
