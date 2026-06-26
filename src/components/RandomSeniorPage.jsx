@@ -16,6 +16,16 @@ export default function RandomSeniorPage({ onExit }) {
   const pickRandomSenior = () => {
     if (seniors.length === 0) return
     
+    const testId = null; 
+    
+    if (testId !== null) {
+      const targetSenior = seniors.find(s => s.id === testId);
+      if (targetSenior) {
+        setCurrentSenior(targetSenior);
+        return;
+      }
+    }
+    
     if (remainingSeniors.current.length === 0) {
       remainingSeniors.current = [...seniors]
     }
@@ -91,21 +101,32 @@ export default function RandomSeniorPage({ onExit }) {
           )}
 
           <div style={{
-            width: 'clamp(130px, 30vw, 180px)',
-            height: 'clamp(130px, 30vw, 180px)',
+            width: 'clamp(140px, 32vw, 190px)',
+            height: 'clamp(140px, 32vw, 190px)',
             borderRadius: '50%',
-            overflow: 'hidden',
-            border: '4px solid var(--color-white)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-            marginBottom: '1rem',
-            backgroundColor: '#f5f5f5',
-            flexShrink: 0
+            padding: '5px',
+            background: 'linear-gradient(135deg, var(--color-crimson) 0%, var(--color-cream) 100%)',
+            boxShadow: '0 8px 24px rgba(138,21,56,0.2)',
+            marginBottom: '1.25rem',
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
-            <img 
-              src={currentSenior.imageUrl} 
-              alt={currentSenior.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+            <div style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: '4px solid var(--color-white)',
+              backgroundColor: '#f5f5f5'
+            }}>
+              <img 
+                src={currentSenior.imageUrl} 
+                alt={currentSenior.name} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
           </div>
 
           <h3 style={{ 
@@ -147,41 +168,42 @@ export default function RandomSeniorPage({ onExit }) {
             </p>
           </div>
 
-          <motion.button 
-            className="btn-primary"
-            onClick={pickRandomSenior}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.5rem',
-              width: '80%',
-              justifyContent: 'center'
-            }}
-          >
-            ต่อไป <ArrowRight size={20} />
-          </motion.button>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '80%', gap: '0.75rem', marginTop: '0.5rem' }}>
+            <motion.button 
+              className="btn-primary"
+              onClick={pickRandomSenior}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.5rem',
+                width: '100%',
+                justifyContent: 'center'
+              }}
+            >
+              ต่อไป <ArrowRight size={20} />
+            </motion.button>
+
+            <motion.button
+              className="btn-secondary"
+              onClick={onExit}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                width: '100%',
+                justifyContent: 'center',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+              }}
+            >
+              <LogOut size={18} /> ออก
+            </motion.button>
+          </div>
         </motion.div>
       </AnimatePresence>
-
-      <motion.button
-        className="btn-secondary"
-        onClick={onExit}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        style={{
-          marginTop: '1.5rem',
-          marginBottom: '1rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          backgroundColor: 'var(--color-white)',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-        }}
-      >
-        <LogOut size={18} /> ออก
-      </motion.button>
     </div>
   )
 }
