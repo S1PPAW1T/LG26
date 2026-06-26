@@ -1,14 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import WelcomePage from './components/WelcomePage'
 import IntroPage from './components/IntroPage'
 import RandomSeniorPage from './components/RandomSeniorPage'
 import ExitPage from './components/ExitPage'
+import { seniors } from './data/seniors'
 import './App.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('welcome') // welcome, intro, random, exit
   const [userName, setUserName] = useState('')
+
+  // Preload all senior images in the background when the app first loads
+  useEffect(() => {
+    seniors.forEach(senior => {
+      if (senior.imageUrl) {
+        const img = new Image()
+        img.src = senior.imageUrl
+      }
+    })
+  }, [])
 
   const renderPage = () => {
     switch (currentPage) {
