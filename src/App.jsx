@@ -46,6 +46,8 @@ function App() {
     <div className="app-container">
       <div className="bg-decor-1"></div>
       <div className="bg-decor-2"></div>
+      <div className="bg-decor-3"></div>
+      <div className="bg-text-pattern"></div>
       <div className="content-wrapper">
         <AnimatePresence mode="wait">
           {renderPage()}
