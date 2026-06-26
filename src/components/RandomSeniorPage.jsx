@@ -171,13 +171,13 @@ export default function RandomSeniorPage({ onExit }) {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         style={{
-          position: 'fixed',
-          bottom: '2rem',
-          right: '2rem',
+          marginTop: '1.5rem',
+          marginBottom: '1rem',
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
-          backgroundColor: 'var(--color-white)'
+          backgroundColor: 'var(--color-white)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
         }}
       >
         <LogOut size={18} /> ออก
