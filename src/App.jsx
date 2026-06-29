@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import WelcomePage from './components/WelcomePage'
 import IntroPage from './components/IntroPage'
+import MessagePage from './components/MessagePage'
 import RandomSeniorPage from './components/RandomSeniorPage'
 import ExitPage from './components/ExitPage'
 import { seniors } from './data/seniors'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('welcome') // welcome, intro, random, exit
+  const [currentPage, setCurrentPage] = useState('welcome') // welcome, intro, message, random, exit
   const [userName, setUserName] = useState('')
 
   // Preload all senior images in the background when the app first loads
@@ -30,9 +31,11 @@ function App() {
           <IntroPage 
             userName={userName} 
             setUserName={setUserName} 
-            onNext={() => setCurrentPage('random')} 
+            onNext={() => setCurrentPage('message')} 
           />
         )
+      case 'message':
+        return <MessagePage userName={userName} onNext={() => setCurrentPage('random')} />
       case 'random':
         return <RandomSeniorPage onExit={() => setCurrentPage('exit')} />
       case 'exit':
